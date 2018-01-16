@@ -37,12 +37,12 @@ class circle(Turtle):
 	def move(self):
 		curentx=self.xcor()
 		curenty=self.ycor()
+		screen_width(-300,300)
 		if curentx<300:
 			# circle.right(150)
 			# circle1.move()
 			self.goto(curentx+self.dx, curenty+self.dy)
-		elif:
-			circle.right(150)
+		elifv circle.right(150)
 			circle.move()
 
 # 	def another_one(self):
