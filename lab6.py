@@ -23,6 +23,7 @@ ball_2.goto(100,0)
 
 def check_collisions(ball_1,ball_2):
 	if ball_1.radius + ball_2.radius > math.sqrt(math.pow((ball_2.xcor()-ball_1.xcor()),2)+math.pow((ball_2.ycor()-ball_1.ycor()),2)):
+
 		print('its collision szn boys')
 	else:
 		

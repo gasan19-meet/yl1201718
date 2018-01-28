@@ -6,14 +6,14 @@ import time
 
 
 colormode(255)
-tracer(0)
-hideturtle()
+# tracer(0)
+# hideturtle()
 
 
 
 
 class circle(Turtle):
-	def __init__(self, x, y, dx, dy, radius):
+	def __init__(self, x, y, dx, dy, radius, color = None):
 	   Turtle.__init__(self)
 	   self.shape('circle')
 	   self.shapesize(radius/10)
@@ -23,10 +23,15 @@ class circle(Turtle):
 	   self.dx=dx
 	   self.dy=dy
 	   self.radius=radius
-	   r = random.randint(0,255)
-	   g = random.randint(0,255)
-	   b = random.randint(0,255)
-	   self.color((r,g,b))
+	   if color==None:
+	   	r = random.randint(0,255)
+	   	g = random.randint(0,255)
+	   	b = random.randint(0,255)
+	   	self.color((r,g,b))
+
+	   else:
+	   	self.color(color)
+	   	black=colormode(179)
 	   # self.goto(-300,-300)
 	   # self.pendown()
 	   # self.goto(-300,300)
@@ -36,19 +41,23 @@ class circle(Turtle):
 	   # self.pu()
 	def move(self,width,height):
 		curentx=self.xcor()
-		new_x=curent_x+dx
+		new_x=curentx+self.dx
 		curenty=self.ycor()
-		new_y=curenty+dy
-		right_side_ball=new_x + r 
-		left_side_ball=new_x -r 
-		top_side_ball=new_y + r 
-		bottom_side_ball = new_y - r 
+		new_y=curenty+self.dy
+		right_side_ball=new_x + self.radius
+		left_side_ball=new_x -self.radius 
+		top_side_ball=new_y + self.radius
+		bottom_side_ball = new_y - self.radius
 		self.goto(new_x,new_y)
 
-		if top_side_ball==height or bottom_side_ball==-height:
-			new_y=curenty + dy*-1
-		if right_side_ball==width or left_side_ball==-width:
-			new_x=curentx + dx*-1
+		if top_side_ball>=height or bottom_side_ball<=-height:
+			self.dy=self.dy*-1
+		if right_side_ball>=width or left_side_ball<=-width:
+			self.dx= self.dx*-1
+
+# my_ball=circle(100,10,10,10,15)
+# for i in range(50):
+# 	my_ball.move(300, 300)
 
 # 	def move(self):
 # 		curentx=self.xcor()

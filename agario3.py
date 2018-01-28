@@ -39,9 +39,31 @@ def collide(ball_1,ball_2):
 def check_all_balls_collision():
 	for ball_a in BALLS:
 		for ball_b in BALLS:
-			if collide(ball_a,ball_b):
+			if collide(ball_a,ball_b)==True:
 				collided_radius_a=ball_a.ball_radius
-				collided_radius_b=ball_b.ball_radius
+				collid
+				ed_radius_b=ball_b.ball_radius
+		if ball_a>ball_b:
+			collided_radius_a+=1
+			while ball_dx or ball_dy>0:
+				ball_b=circle(screen_xpos,screen_ypos,ball_dx,ball_dy,ball_radius)
+		elif ball_b>ball_a:
+			collided_radius_b+=1
+			while ball_dx or ball_dy>0:
+				ball_a=circle(screen_xpos,screen_ypos,ball_dx,ball_dy,ball_radius)
+def check_myball_collision():
+	for my_ball in Balls:
+		if collide(my_ball,Balls)==True:
+			my_ball_radius=my_ball.ball_radius
+			other_ball=ball_b.ball_radius
+		if my_ball<ball_b:
+			check_myball_collision=False
+		elif my_ball>ball_b:
+			my_ball+=1
+			ball_b=circle(screen_xpos,screen_ypos,ball_dx,ball_dy,ball_radius)
+
+
+
 
 getscreen().update()
 mainloop()
