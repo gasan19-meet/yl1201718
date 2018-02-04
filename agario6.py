@@ -10,7 +10,7 @@ SLEEPING=0.0077
 SCREEN_WIDTH=getcanvas().winfo_width()/2
 SCREEN_HEIGHT= getcanvas().winfo_height()/2
 
-my_ball=circle(100,10,0,0,20,'black')
+my_ball=circle(100,10,10,10,20,'black')
 NUMBER_OF_BALLS=5
 MINIMUM_BALL_RADIUS=10
 MAXIMUM_BALL_RADIUS=30
@@ -55,7 +55,6 @@ def check_all_balls_collision():
 				if ball_a.radius>ball_b.radius:
 					ball_a.radius+=1
 					ball_a.shapesize(ball_a.radius/10)
-
 					ball_b.goto(screen_xpos,screen_ypos)
 					ball_b.dx=ball_dx
 					ball_b.dy=ball_dy
@@ -65,58 +64,55 @@ def check_all_balls_collision():
 
 				elif ball_b.radius>ball_a.radius:
 					ball_b.radius+=1
-					ball_b.shapesize(ball_b.radius/10)
-
+					ball_b.shapesize(ball_radius/10)
 					ball_a.goto(screen_xpos,screen_ypos)
 					ball_a.dx=ball_dx
 					ball_a.dy=ball_dy
 					ball_a.radius=ball_radius
-					ball_a.shapesize(ball_a.radius/10)
+					ball_a.shapesize(ball_b.radius/10)
 
 def check_myball_collision():
-	for other_ball in BALLS:
+	for ball_a in BALLS:
 		screen_xpos=random.randint(int(-SCREEN_WIDTH+MAXIMUM_BALL_RADIUS),int(SCREEN_WIDTH-MAXIMUM_BALL_RADIUS))
 		screen_ypos=random.randint(int(-SCREEN_HEIGHT+MAXIMUM_BALL_RADIUS),int(SCREEN_HEIGHT-MAXIMUM_BALL_RADIUS))
 		ball_dx=random.randint(int(MINIMUM_BALL_DX),int(MAXIMUM_BALL_DX))
 		ball_dy=random.randint(int(MINIMUM_BALL_DY),int(MAXIMUM_BALL_DY))
 		ball_radius=random.randint(int(MINIMUM_BALL_RADIUS),int(MAXIMUM_BALL_RADIUS))
-		if collide(other_ball,my_ball)==True:
+		if collide(ball_a,my_ball)==True:
 			my_ball_radius=my_ball.radius
-			other_ball_radius=other_ball.radius
-			if my_ball.radius<other_ball.radius:
-				write('GAME OVER',align='center', font=("Arial", 60, "normal"))
-				print('GAME OVER')
+			other_ball=ball_a.radius
+			if my_ball.radius<ball_a.radius:
 				return False
-			elif my_ball.radius>other_ball.radius:
+			elif my_ball.radius>ball_a.radius:
 				my_ball.radius+=1
 				my_ball.shapesize(my_ball.radius/10)
-				other_ball.goto(screen_xpos,screen_ypos)
-				other_ball.dx=ball_dx
-				other_ball.dy=ball_dy
-				other_ball.radius=ball_radius
-				other_ball.shapesize(other_ball.radius/10)
+				my_ball.goto(screen_xpos,screen_ypos)
+				my_ball.dx=ball_dx
+				my_ball.dy=ball_dy
+				my_ball.radius=ball_radius
+				my_ball.shapesize(ball_a.radius/10)
 			
 	return True
 def movearound(event):
-	my_ball.goto(event.x-SCREEN_WIDTH,SCREEN_HEIGHT-event.y)
+	my_ball.move(event.x-SCREEN_WIDTH,SCREEN_HEIGHT-event.y)
 getcanvas().bind("<Motion>", movearound)
-getscreen().listen()
+listen()
 
-for i in range(5000000):
-	move_all_balls()
-	getscreen().update()
-
-# while RUNNING==True:
-# 	if SCREEN_WIDTH!=getcanvas().winfo_width()/2:
-# 		SCREEN_WIDTH=getcanvas().winfo_width()/2
-# 	if SCREEN_HEIGHT!=getcanvas().winfo_height()/2:
-# 		SCREEN_HEIGHT=getcanvas().winfo_height()/2
+# for i in range(5000000):
 # 	move_all_balls()
-# 	check_all_balls_collision()
-# 	my_ball.move(SCREEN_WIDTH,SCREEN_HEIGHT)
-# 	RUNNING=check_myball_collision()
 # 	getscreen().update()
-# 	time.sleep(SLEEPING)
+
+while RUNNING==True:
+	if SCREEN_WIDTH!=getcanvas().winfo_width()/2:
+		SCREEN_WIDTH=getcanvas().winfo_width()/2
+	if SCREEN_HEIGHT!=getcanvas().winfo_height()/2:
+		SCREEN_HEIGHT=getcanvas().winfo_height()/2
+	move_all_balls()
+	check_all_balls_collision()
+	my_ball.move(SCREEN_WIDTH,SCREEN_HEIGHT)
+	RUNNING=check_myball_collision()
+	getscreen().update()
+	time.sleep(SLEEPING)
 
 
 

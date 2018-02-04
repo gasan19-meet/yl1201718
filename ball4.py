@@ -170,3 +170,45 @@ class circle(Turtle):
 
 
 #          write a code that makes a new circle each time a ball leaves the barriers...(make a loop or function) 
+# class square(Turtle):
+# 	def __init__(self, x, y, dx, dy,, color = None):
+# 	   Turtle.__init__(self)
+# 	   self.shape('circle')
+# 	   self.shapesize(radius/10)
+# 	   self.pu()
+# 	   self.goto(x,y)
+# 	   # self.y=y
+# 	   self.dx=dx
+# 	   self.dy=dy
+# 	   self.radius=radius
+# 	   if color==None:
+# 	   	r = random.randint(0,255)
+# 	   	g = random.randint(0,255)
+# 	   	b = random.randint(0,255)
+# 	   	self.color((r,g,b))
+
+# 	   else:
+# 	   	self.color(color)
+# 	   	black=colormode(179)
+# 	   # self.goto(-300,-300)
+# 	   # self.pendown()
+# 	   # self.goto(-300,300)
+# 	   # self.goto(300,300)
+# 	   # self.goto(300,-300)
+# 	   # self.goto(-300,-300)
+# 	   # self.pu()
+# 	def move(self,width,height):
+# 		curentx=self.xcor()
+# 		new_x=curentx+self.dx
+# 		curenty=self.ycor()
+# 		new_y=curenty+self.dy
+# 		right_side_ball=new_x + self.radius
+# 		left_side_ball=new_x -self.radius 
+# 		top_side_ball=new_y + self.radius
+# 		bottom_side_ball = new_y - self.radius
+# 		self.goto(new_x,new_y)
+
+# 		if top_side_ball>=height or bottom_side_ball<=-height:
+# 			self.dy=self.dy*-1
+# 		if right_side_ball>=width or left_side_ball<=-width:
+# 			self.dx= self.dx*-1
